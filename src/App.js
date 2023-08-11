@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import RouteGuard from "./guards/RouteGuard";
+import { AuthenticationProvider } from "./context/Authentication";
+import CssBaseline from '@mui/material/CssBaseline';
+import SignIn from "./components/Login/Signin";
+import Books from "./components/Books/Books";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthenticationProvider>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <RouteGuard path="/" exact>
+            <Books />
+          </RouteGuard>
+          <RouteGuard path="/favorites" exact>
+            <Favorites />
+          </RouteGuard>
+          <Route path="/login">
+            <SignIn />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthenticationProvider>
   );
 }
 
