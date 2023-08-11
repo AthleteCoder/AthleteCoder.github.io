@@ -16,15 +16,15 @@ function App() {
       <CssBaseline />
       <Router>
         <Switch>
-          <RouteGuard path="/" exact>
-            <Books />
-          </RouteGuard>
           <RouteGuard path="/favorites" exact>
             <Favorites />
           </RouteGuard>
-          <Route path="/login">
+          <Route path="/login" exact>
             <SignIn />
           </Route>
+          <RouteGuard path="/">
+            <Books />
+          </RouteGuard>
         </Switch>
       </Router>
     </AuthenticationProvider>
