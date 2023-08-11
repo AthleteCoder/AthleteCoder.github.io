@@ -27,6 +27,12 @@ const Favorites = () => {
     }
 
     return <Grid container spacing={3}>
+        <Grid item xs={12}>
+            <Alert severity="info">
+                <AlertTitle>Favorites</AlertTitle>
+                Go back and add some books! — <strong><Link to="/">Books</Link></strong>
+            </Alert>
+        </Grid>
         <BooksList books={books} />
     </Grid>
 }
